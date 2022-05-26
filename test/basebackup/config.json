@@ -18,6 +18,6 @@
     "compression": {
         "algorithm": "snappy"
     },
-    "log_level": "INFO",
+    "log_level": "DEBUG",
     "restore_process_count": 2
 }
