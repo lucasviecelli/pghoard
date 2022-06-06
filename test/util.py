@@ -7,6 +7,14 @@ class Timeout(Exception):
     pass
 
 
+def get_xlog_count(pghoard: PGHoard) -> int:
+    transfer_agent_state_for_site = pghoard.transfer_agent_state.get(pghoard.test_site)
+    if transfer_agent_state_for_site:
+        xlogs = transfer_agent_state_for_site["upload"]["xlog"]["xlogs_since_basebackup"]
+        return len(xlogs)
+    return 0
+
+
 def wait_for_xlog(pghoard: PGHoard, count: int, *, timeout_seconds: int = 15):
     start = time.monotonic()
     while True:
